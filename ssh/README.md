@@ -16,6 +16,7 @@ RSA key pair instead of a password.
 |---|------|-------------|
 | 1 | `1-create_ssh_key_pair` | Creates a 4096-bit RSA key pair named `school`, protected by a passphrase |
 | 2 | `2-ssh_config` | SSH client configuration: uses `~/.ssh/school` and refuses password authentication |
+| 4 | `100-puppet_ssh_config.pp` | Puppet manifest that applies the same client configuration to `/etc/ssh/ssh_config` |
 
 ## Usage
 
@@ -39,3 +40,19 @@ Host *
 ```
 
 Check what SSH will use for a host with `ssh -G user@host`.
+
+### Puppet (task 4)
+
+`100-puppet_ssh_config.pp` uses `file_line` from the `puppetlabs-stdlib`
+module, which must be installed (`puppet module install puppetlabs-stdlib`).
+
+```
+$ sudo puppet apply 100-puppet_ssh_config.pp
+Notice: Compiled catalog for ubuntu in environment production in 0.02 seconds
+Notice: /Stage[main]/Main/File_line[Turn off passwd auth]/ensure: created
+Notice: /Stage[main]/Main/File_line[Declare identity file]/ensure: created
+Notice: Applied catalog in 0.01 seconds
+```
+
+Running it again changes nothing. An existing active `PasswordAuthentication`
+line is replaced, so the final setting is always `no`.
