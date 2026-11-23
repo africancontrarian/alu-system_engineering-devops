@@ -1,0 +1,3 @@
+# Never commit the key pair created by 1-create_ssh_key_pair
+school
+school.pub
