@@ -27,8 +27,8 @@ frontend http_front
 
 backend http_back
 	balance roundrobin
-	server 7310-web-01 __WEB01_IP__:80 check
-	server 7310-web-02 __WEB02_IP__:80 check
+	server 7310-web-01 13.40.149.114:80 check
+	server 7310-web-02 18.175.45.200:80 check
 CFG
 if pgrep -x haproxy > /dev/null; then
 	service haproxy restart
