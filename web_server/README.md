@@ -18,6 +18,7 @@ brand new Ubuntu machine, plus a custom 404 page.
 |---|------|-------------|
 | 0 | `0-transfer_file` | Copies a file to the home directory of a server with `scp` (strict host key checking disabled) |
 | 1 | `1-install_nginx_web_server` | Installs Nginx and serves a page containing `Holberton School` on port 80 |
+| 2 | `2-setup_a_domain_name` | The root domain, whose A record points to the web-01 IP |
 | 3 | `3-redirection` | Same as task 1, plus a `301 Moved Permanently` redirection for `/redirect_me` |
 | 4 | `4-not_found_page_404` | Same as task 3, plus a custom 404 page containing `Ceci n'est pas une page` |
 | 5 | `5-design_a_beautiful_404_page.html` | A designed, self-contained 404 page |

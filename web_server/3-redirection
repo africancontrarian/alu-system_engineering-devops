@@ -2,6 +2,7 @@
 # Installs nginx, serves a Holberton School page and redirects /redirect_me with a 301 Moved Permanently
 apt-get update -y
 apt-get install -y nginx
+mkdir -p /var/www/html
 echo "Holberton School for the win!" > /var/www/html/index.html
 cat > /etc/nginx/sites-available/default << 'NGINX'
 server {
@@ -21,4 +22,8 @@ server {
 }
 NGINX
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx restart
+if pgrep -x nginx > /dev/null; then
+	service nginx restart
+else
+	service nginx start
+fi
