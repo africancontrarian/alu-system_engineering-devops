@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Configures the container so Nginx runs as the nginx user and listens on port 8080 of all active IPs
+pkill apache2
+chmod 644 /etc/nginx/nginx.conf
+sed -Ei 's/^\s*#?\s*user\s+[a-z_-]+/user nginx/' /etc/nginx/nginx.conf
+sed -Ei 's/(listen (\[::\]:)?)80 /\18080 /' /etc/nginx/sites-available/default
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+su nginx -s /bin/bash -c 'service nginx restart'

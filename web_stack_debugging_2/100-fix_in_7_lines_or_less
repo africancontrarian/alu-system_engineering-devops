@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Short fix: runs Nginx as the nginx user, listening on port 8080
+pkill apache2
+chmod 644 /etc/nginx/nginx.conf
+sed -Ei 's/^\s*#?\s*user\s+[a-z_-]+/user nginx/' /etc/nginx/nginx.conf
+sed -Ei 's/(listen (\[::\]:)?)80 /\18080 /' /etc/nginx/sites-enabled/default
+su nginx -s /bin/bash -c 'service nginx restart'
