@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Short fix: makes Nginx listen on port 80 and empties its pid file so service reports it not running
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+echo "" > /run/nginx.pid
