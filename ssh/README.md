@@ -14,8 +14,10 @@ RSA key pair instead of a password.
 
 | # | File | Description |
 |---|------|-------------|
+| 0 | `0-use_a_private_key` | Connects to web-01 as `ubuntu` with the private key `~/.ssh/school` |
 | 1 | `1-create_ssh_key_pair` | Creates a 4096-bit RSA key pair named `school`, protected by a passphrase |
 | 2 | `2-ssh_config` | SSH client configuration: uses `~/.ssh/school` and refuses password authentication |
+| 3 | (no file) | The checker's public key is added to `~/.ssh/authorized_keys` of the `ubuntu` user on web-01 |
 | 4 | `100-puppet_ssh_config.pp` | Puppet manifest that applies the same client configuration to `/etc/ssh/ssh_config` |
 
 ## Usage
